@@ -1,0 +1,52 @@
+name: PHP Syntax & Automated Code Quality Check
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  php-lint:
+    name: PHP Syntax Check (php -l)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP Environment
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo, pdo_mysql, bcmath, curl
+          coverage: none
+
+      - name: Check PHP Syntax (php -l)
+        run: |
+          echo "Bắt đầu kiểm tra lỗi cú pháp toàn bộ file PHP trong dự án..."
+          error_count=0
+          while IFS= read -r -d '' file; do
+            output=$(php -l "$file" 2>&1)
+            status=$?
+            if [ $status -ne 0 ]; then
+              echo "❌ Syntax error in $file: $output"
+              error_count=$((error_count + 1))
+            fi
+          done < <(find . -type f -name "*.php" ! -path "./vendor/*" ! -path "./storage/*" -print0)
+
+          if [ $error_count -ne 0 ]; then
+            echo "❌ Phát hiện $error_count file PHP bị lỗi cú pháp!"
+            exit 1
+          else
+            echo "✅ Toàn bộ file PHP trong dự án đều hợp lệ (No syntax errors detected)!"
+          fi
+
+      - name: Install Composer Dependencies
+        run: composer install --prefer-dist --no-progress --no-suggest
+
+      - name: Run Test Suite
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ":memory:"
+        run: php artisan test

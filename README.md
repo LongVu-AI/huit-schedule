@@ -1,58 +1,223 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎓 HUIT Schedule Hub
+> **Hệ thống Quản lý và Phân lịch Giảng dạy Đa Cơ sở Thông minh**  
+> *Đồ án thực hành môn Công nghệ phần mềm / Mã nguồn mở - Trường Đại học Công Thương TP.HCM (HUIT)*
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[![PHP Version](https://img.shields.io/badge/PHP-8.3%2B-777bb4?style=flat&logo=php)](https://php.net)
+[![Laravel Framework](https://img.shields.io/badge/Laravel-11%2F12%2F13-ff2d20?style=flat&logo=laravel)](https://laravel.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![CI PHP Lint](https://img.shields.io/badge/CI-GitHub%20Actions-blue?style=flat&logo=github-actions)](.github/workflows/ci.yml)
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📌 Giới Thiệu Dự Án
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Trong môi trường giáo dục đại học, giảng viên thường phải di chuyển giảng dạy giữa nhiều cơ sở khác nhau (như **Cơ sở chính tại Tân Phú**, cơ sở chế biến, xưởng thực hành công nghệ, hoặc trung tâm liên kết Quận 1). 
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**HUIT Schedule Hub** được thiết kế nhằm giải quyết bài toán:
+1. **Phân lịch theo tiết trống & tối ưu hóa di chuyển**: Tự động phát hiện khoảng trống chết, chống trùng lịch 100%, và ưu tiên xếp lịch cùng cơ sở trong ngày để giảm thiểu thời gian di chuyển giữa các cơ sở cho giảng viên.
+2. **Gợi ý giảng viên thông minh (Smart Recommendation)**: Phân tích sự tương đồng chuyên môn giữa tên học phần và chuyên môn của giảng viên, kết hợp trạng thái lịch trống và địa điểm dạy trong ngày.
+3. **Cổng thông tin Giảng viên (Teacher Portal)**: Giúp giảng viên tra cứu lịch dạy cá nhân theo tuần/danh sách, định vị phòng học và dẫn đường đến từng cơ sở qua Google Maps.
+4. **Trang tổng quan & Biểu đồ phân bổ**: Lọc nhanh theo cơ sở, giảng viên, hiển thị biểu đồ phân bổ thời gian giảng dạy và ma trận tiết trống trực quan.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Công Nghệ & Thư Viện Sử Dụng
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend**: PHP 8.3, Laravel Framework.
+- **Database**: MySQL / MariaDB (Database: `huit_db` hoặc `huit-schedule`).
+- **Gói mã nguồn mở qua Packagist**:
+  - `vlucas/phpdotenv`: Quản lý an toàn biến môi trường kết nối database.
+  - `fakerphp/faker`: Giả lập dữ liệu danh sách giảng viên, tiết trống và thời khóa biểu.
+- **Frontend & UI/UX**: Bootstrap 5.3, FontAwesome 6, Google Fonts Plus Jakarta Sans, Chart.js.
+- **CI/CD**: GitHub Actions workflow tự động kiểm tra lỗi cú pháp PHP (`php -l`) và chạy test suite khi push code.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 🚀 Hướng Dẫn Cài Đặt Chi Tiết
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### 1. Yêu cầu hệ thống
+- **Hệ điều hành**: Windows (khuyến nghị chạy trên **Laragon**) hoặc Linux/macOS.
+- **PHP**: >= 8.3
+- **Composer**: >= 2.0
+- **MySQL / MariaDB**: >= 8.0 (hoặc MariaDB 10.4+)
+
+---
+
+### 2. Khởi tạo dự án và cài đặt Composer Packages
+
+Mở terminal trong thư mục `C:\laragon\www\huit-schedule` (hoặc thư mục làm việc của bạn):
 
 ```bash
-composer require laravel/boost --dev
+# 1. Di chuyển vào thư mục dự án
+cd huit-schedule
 
-php artisan boost:install
+# 2. Cài đặt các thư viện phụ thuộc qua Composer
+composer install
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+### 3. Cấu hình biến môi trường (`.env`)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Sao chép file `.env.example` thành `.env`:
 
-## Code of Conduct
+```bash
+# Windows PowerShell
+copy .env.example .env
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Hoặc Linux/macOS
+cp .env.example .env
+```
 
-## Security Vulnerabilities
+Mở file `.env` và kiểm tra cấu hình kết nối Database:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```env
+APP_NAME="HUIT Schedule Hub"
+APP_ENV=local
+APP_KEY=
+APP_DEBUG=true
+APP_URL=http://huit-schedule.test
 
-## License
+# Cấu hình kết nối MySQL / HeidiSQL
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=huit_db
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Sau đó tạo Application Key:
+
+```bash
+php artisan key:generate
+```
+
+---
+
+### 4. Hướng dẫn Khởi tạo Dữ liệu (2 Cách)
+
+#### 👉 Cách 1: Import file SQL mẫu (`huit_db.sql`) có sẵn
+
+Dự án đã đóng gói sẵn file SQL mẫu chứa đầy đủ cấu trúc bảng và dữ liệu mẫu thực tế của HUIT:
+- Đường dẫn file: `huit_db.sql` (hoặc `database/huit_db.sql`).
+
+**Thao tác import:**
+1. **Qua HeidiSQL / phpMyAdmin**:
+   - Mở HeidiSQL hoặc phpMyAdmin (trên Laragon: bấm chuột phải vào Laragon -> *MySQL* -> *HeidiSQL*).
+   - Tạo Database mới tên `huit_db` (Collation: `utf8mb4_unicode_ci`).
+   - Chọn database `huit_db` -> bấm menu **File** -> **Load SQL file...** -> chọn file `huit_db.sql` -> bấm **F9** để thực thi.
+2. **Qua Command Line (CLI)**:
+   ```bash
+   # Tạo database nếu chưa có
+   mysql -u root -e "CREATE DATABASE IF NOT EXISTS huit_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+
+   # Import file SQL mẫu
+   mysql -u root huit_db < huit_db.sql
+   ```
+
+#### 👉 Cách 2: Chạy Migration và Seeder tự động của Laravel
+
+```bash
+php artisan migrate --force
+php artisan db:seed
+```
+
+---
+
+### 5. Cấu hình Virtual Host trên Laragon
+
+Để truy cập web app với tên miền cục bộ [http://huit-schedule.test](http://huit-schedule.test):
+
+1. Đặt thư mục dự án hoặc tạo liên kết (Junction/Symlink) tại `C:\laragon\www\huit-schedule`.
+2. Khởi động lại Laragon (hoặc nhấn chuột phải -> *Apache* -> *Reload*).
+3. Laragon sẽ tự động nhận diện và trỏ Virtual Host `http://huit-schedule.test` về thư mục `public/`.
+4. Hoặc chạy máy chủ phát triển nội bộ:
+   ```bash
+   php artisan serve
+   # Truy cập tại: http://127.0.0.1:8000
+   ```
+
+---
+
+## 🔑 Tài Khoản Trải Nghiệm Mẫu
+
+Hệ thống đã chuẩn bị sẵn tài khoản demo với phân quyền chi tiết:
+
+| Vai trò | Email đăng nhập | Mật khẩu | Quyền hạn |
+| :--- | :--- | :--- | :--- |
+| **Quản trị viên (Admin)** | `admin@huit.edu.vn` | `admin123` | Toàn quyền CRUD lịch dạy, cơ sở, giảng viên, xem ma trận tiết trống và gợi ý thông minh |
+| **Giảng viên Web** | `nguyenvanan@huit.edu.vn` | `password` | Xem thời khóa biểu cá nhân TS. Nguyễn Văn An, định vị cơ sở Tân Phú, Q1 |
+| **Giảng viên AI** | `lehoangcuong@huit.edu.vn` | `password` | Xem thời khóa biểu cá nhân PGS.TS. Lê Hoàng Cường (AI/Data) |
+| **Giảng viên Mạng** | `phamminhdung@huit.edu.vn` | `password` | Xem thời khóa biểu cá nhân ThS. Phạm Minh Dũng (Cơ sở Nguyễn Đỗ Cung) |
+
+> 💡 *Trang đăng nhập có sẵn các nút bấm một chạm để tự động điền tài khoản mẫu rất tiện lợi khi chấm điểm.*
+
+---
+
+## 📊 Cấu Trúc Cơ Sở Dữ Liệu (`huit_db`)
+
+Hệ thống được thiết kế chuẩn mực quan hệ trên MySQL:
+
+```mermaid
+erDiagram
+    BRANCHES ||--o{ SCHEDULES : has
+    TEACHERS ||--o{ SCHEDULES : teaches
+    USERS ||--o| TEACHERS : authenticates
+
+    BRANCHES {
+        bigint id PK
+        string branch_name
+        string address
+        timestamps created_at_updated_at
+    }
+
+    TEACHERS {
+        bigint id PK
+        string full_name
+        string email UK
+        string phone
+        string expertise
+        bigint user_id FK
+        timestamps created_at_updated_at
+    }
+
+    SCHEDULES {
+        bigint id PK
+        bigint teacher_id FK
+        bigint branch_id FK
+        string subject_name
+        string room
+        tinyint day_of_week
+        string shift_or_periods
+        timestamps created_at_updated_at
+    }
+
+    USERS {
+        bigint id PK
+        string name
+        string email UK
+        string password
+        string role "admin | teacher"
+        timestamps created_at_updated_at
+    }
+```
+
+---
+
+## 🤖 Tự Động Hóa CI/CD (GitHub Actions)
+
+Dự án tích hợp workflow kiểm tra mã nguồn tự động tại `.github/workflows/ci.yml`:
+- Tự động chạy mỗi khi có commit được `git push` hoặc `pull_request` lên nhánh `main`.
+- Thực hiện kiểm tra lỗi cú pháp PHP trên toàn bộ mã nguồn bằng lệnh:
+  ```bash
+  php -l <filename>
+  ```
+- Tự động cài đặt dependencies và chạy bộ test suite (`php artisan test`) để đảm bảo hệ thống không bị lỗi hồi quy (regression bugs).
+
+---
+
+## 📄 Bản Quyền & Giấy Phép (License)
+
+Dự án được phân phối dưới giấy phép mã nguồn mở **[MIT License](LICENSE)**.
+© 2026 **Vu Thien Long (MSSV: 2001230456)** - Trường Đại học Công Thương TP.HCM (HUIT).

@@ -2,69 +2,79 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Branch;
- 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\View\View;
+
 class BranchController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of branches.
      */
-    public function index() {
-        $branches = Branch::all();
+    public function index(): View
+    {
+        $branches = Branch::withCount('schedules')->get();
         return view('branches.index', compact('branches'));
     }
- 
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new branch.
      */
-    public function create()
+    public function create(): View
     {
         return view('branches.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created branch.
      */
-    public function store(Request $request) {
-        $request->validate([
-            'branch_name' => 'required|string',
-            'address' => 'required|string'
+    public function store(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'branch_name' => ['required', 'string', 'max:255', 'unique:branches,branch_name'],
+            'address' => ['required', 'string', 'max:255'],
         ]);
-        Branch::create($request->all());
-        return redirect()->route('branches.index')->with('success', 'Thêm cơ sở thành công!');
+
+        Branch::create($validated);
+
+        return redirect()->route('branches.index')->with('success', 'Thêm cơ sở đào tạo thành công!');
     }
-  
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the branch.
      */
-    public function edit(Branch $branch)
+    public function edit(Branch $branch): View
     {
-      
         return view('branches.edit', compact('branch'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified branch.
      */
-    public function update(Request $request, Branch $branch)
+    public function update(Request $request, Branch $branch): RedirectResponse
     {
-        $request->validate([
-            'branch_name' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
+        $validated = $request->validate([
+            'branch_name' => ['required', 'string', 'max:255', 'unique:branches,branch_name,' . $branch->id],
+            'address' => ['required', 'string', 'max:255'],
         ]);
 
-        $branch->update($request->all());
-        return redirect()->route('branches.index')->with('success', 'Cập nhật thành công!');
+        $branch->update($validated);
+
+        return redirect()->route('branches.index')->with('success', 'Cập nhật thông tin cơ sở thành công!');
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified branch.
      */
-    public function destroy(string $id)
+    public function destroy(Branch $branch): RedirectResponse
     {
-        //
+        $schedulesCount = $branch->schedules()->count();
+        $branch->delete();
+
+        return redirect()->route('branches.index')->with(
+            'success',
+            "Đã xóa cơ sở thành công" . ($schedulesCount > 0 ? " (và {$schedulesCount} lịch dạy liên quan)!" : "!")
+        );
     }
 }

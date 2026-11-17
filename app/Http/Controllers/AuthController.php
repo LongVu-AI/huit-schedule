@@ -2,42 +2,61 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\View\View;
 
 class AuthController extends Controller
 {
-   // Hiển thị form đăng nhập
-    public function showLogin() {
-        return view('auth.login'); // Bạn cần tạo file resources/views/auth/login.blade.php
+    /**
+     * Show login form.
+     */
+    public function showLogin(): View|RedirectResponse
+    {
+        if (Auth::check()) {
+            return Auth::user()->role === 'admin'
+                ? redirect()->route('schedules.index')
+                : redirect()->route('schedules.my');
+        }
+
+        return view('auth.login');
     }
 
-    // Xử lý đăng nhập
-    public function login(Request $request) {
+    /**
+     * Handle login submission.
+     */
+    public function login(Request $request): RedirectResponse
+    {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
-            // Chuyển hướng dựa vào role
+
             if (Auth::user()->role === 'admin') {
-                return redirect()->intended('/schedules');
+                return redirect()->intended(route('schedules.index'));
             }
-            return redirect()->intended('/my-schedule');
+
+            return redirect()->intended(route('schedules.my'));
         }
 
-        return back()->withErrors([
-            'email' => 'Email hoặc mật khẩu không đúng.',
+        return back()->withInput($request->only('email', 'remember'))->withErrors([
+            'email' => 'Email hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại.',
         ]);
     }
 
-    // Đăng xuất
-    public function logout(Request $request) {
+    /**
+     * Handle logout.
+     */
+    public function logout(Request $request): RedirectResponse
+    {
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect('/login');
+
+        return redirect()->route('login')->with('info', 'Bạn đã đăng xuất khỏi hệ thống thành công.');
     }
 }
