@@ -6,6 +6,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'HUIT Schedule Hub') - Quản lý và Phân lịch Giảng dạy Đa Cơ sở</title>
     
+    <!-- Favicon HUIT Crest -->
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/huit-crest.svg') }}">
+
     <!-- Google Fonts: Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,35 +55,37 @@
         }
 
         .sidebar-brand {
-            padding: 1.5rem 1.25rem;
+            padding: 1.25rem 1.25rem;
             border-bottom: 1px solid rgba(255,255,255,0.12);
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.85rem;
         }
 
-        .brand-badge {
-            background-color: var(--huit-orange);
-            color: white;
-            font-weight: 800;
-            font-size: 1.15rem;
-            padding: 0.35rem 0.65rem;
-            border-radius: 8px;
-            letter-spacing: 0.5px;
+        .brand-crest {
+            width: 44px;
+            height: 44px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            transition: transform 0.3s ease;
+        }
+
+        .brand-crest:hover {
+            transform: rotate(15deg) scale(1.08);
         }
 
         .brand-title {
             font-size: 1.05rem;
-            font-weight: 700;
+            font-weight: 800;
             line-height: 1.2;
             color: #fff;
+            letter-spacing: 0.3px;
         }
 
         .brand-subtitle {
             font-size: 0.72rem;
             color: #9cb5db;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.6px;
         }
 
         .nav-section-title {
@@ -115,12 +120,11 @@
             gap: 0.85rem;
         }
 
-        .sidebar-menu a i {
-            width: 20px;
-            font-size: 1.1rem;
+        .sidebar-menu a i, .sidebar-menu a .menu-emoji {
+            width: 22px;
+            font-size: 1.15rem;
             text-align: center;
-            color: #9cb5db;
-            transition: color 0.2s ease;
+            transition: transform 0.2s ease;
         }
 
         .sidebar-menu a:hover {
@@ -128,8 +132,8 @@
             color: #fff;
         }
 
-        .sidebar-menu a:hover i {
-            color: var(--huit-orange);
+        .sidebar-menu a:hover .menu-emoji {
+            transform: scale(1.2);
         }
 
         .sidebar-menu a.active {
@@ -137,10 +141,6 @@
             color: #fff;
             font-weight: 600;
             box-shadow: 0 4px 12px rgba(240, 106, 25, 0.35);
-        }
-
-        .sidebar-menu a.active i {
-            color: #fff;
         }
 
         /* Main Content wrapper */
@@ -169,23 +169,19 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.35rem 0.75rem;
+            padding: 0.35rem 0.75rem 0.35rem 0.45rem;
             background: #f8fafc;
             border: 1px solid #e2e8f0;
             border-radius: 40px;
         }
 
-        .user-avatar {
+        .user-avatar-img {
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: var(--huit-blue);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
+            object-fit: cover;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
         /* Main Container */
@@ -219,7 +215,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
         }
 
         /* Content Cards */
@@ -312,10 +308,9 @@
         .footer {
             background: #fff;
             border-top: 1px solid #e2e8f0;
-            padding: 1rem 1.75rem;
+            padding: 1.25rem 1.75rem;
             font-size: 0.85rem;
             color: #64748b;
-            text-align: center;
         }
 
         /* Responsive sidebar */
@@ -351,9 +346,9 @@
     <!-- Sidebar -->
     <aside id="sidebar">
         <div class="sidebar-brand">
-            <span class="brand-badge">HUIT</span>
+            <img src="{{ asset('images/huit-crest.svg') }}" alt="HUIT Crest" class="brand-crest">
             <div>
-                <div class="brand-title">Schedule Hub</div>
+                <div class="brand-title">HUIT Schedule</div>
                 <div class="brand-subtitle">Đa Cơ Sở Thông Minh</div>
             </div>
         </div>
@@ -362,19 +357,19 @@
         <ul class="sidebar-menu">
             <li>
                 <a href="{{ route('schedules.index') }}" class="{{ request()->routeIs('schedules.index') ? 'active' : '' }}">
-                    <i class="fa-solid fa-calendar-days"></i>
+                    <span class="menu-emoji">📅</span>
                     <span>Thời Khóa Biểu Chung</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('schedules.matrix') }}" class="{{ request()->routeIs('schedules.matrix') ? 'active' : '' }}">
-                    <i class="fa-solid fa-table-cells"></i>
+                    <span class="menu-emoji">📊</span>
                     <span>Ma Trận Tiết Trống</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('schedules.my') }}" class="{{ request()->routeIs('schedules.my') ? 'active' : '' }}">
-                    <i class="fa-solid fa-id-badge"></i>
+                    <span class="menu-emoji">👨‍🏫</span>
                     <span>Cổng Giảng Viên</span>
                 </a>
             </li>
@@ -385,19 +380,19 @@
         <ul class="sidebar-menu">
             <li>
                 <a href="{{ route('schedules.create') }}" class="{{ request()->routeIs('schedules.create') ? 'active' : '' }}">
-                    <i class="fa-solid fa-calendar-plus"></i>
+                    <span class="menu-emoji">✨</span>
                     <span>Phân Lịch Thông Minh</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('branches.index') }}" class="{{ request()->routeIs('branches.*') ? 'active' : '' }}">
-                    <i class="fa-solid fa-building-columns"></i>
+                    <span class="menu-emoji">🏫</span>
                     <span>Quản Lý Cơ Sở</span>
                 </a>
             </li>
             <li>
                 <a href="{{ route('teachers.index') }}" class="{{ request()->routeIs('teachers.*') ? 'active' : '' }}">
-                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <span class="menu-emoji">👥</span>
                     <span>Quản Lý Giảng Viên</span>
                 </a>
             </li>
@@ -408,7 +403,7 @@
         <ul class="sidebar-menu">
             <li>
                 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                    <i class="fa-solid fa-right-from-bracket text-danger"></i>
+                    <span class="menu-emoji">🚪</span>
                     <span class="text-white">Đăng Xuất</span>
                 </a>
             </li>
@@ -423,12 +418,13 @@
                 <button class="btn btn-sm btn-outline-secondary d-lg-none" id="sidebar-toggle">
                     <i class="fa-solid fa-bars"></i>
                 </button>
-                <div class="d-none d-sm-block">
-                    <span class="badge bg-light text-primary border px-2 py-1 me-2">
-                        <i class="fa-solid fa-location-dot me-1 text-danger"></i> ĐH Công Thương TP.HCM (HUIT)
+                <div class="d-none d-sm-flex align-items-center gap-2">
+                    <img src="{{ asset('images/logo-huit.svg') }}" alt="HUIT Logo" height="34" class="d-none d-md-block">
+                    <span class="badge bg-light text-primary border px-2 py-1">
+                        📍 ĐH Công Thương TP.HCM
                     </span>
                     <span class="text-muted small">
-                        <i class="fa-regular fa-clock me-1"></i> Hôm nay: {{ \Carbon\Carbon::now()->locale('vi')->translatedFormat('l, d/m/Y') }}
+                        🕒 {{ \Carbon\Carbon::now()->locale('vi')->translatedFormat('l, d/m/Y') }}
                     </span>
                 </div>
             </div>
@@ -436,16 +432,14 @@
             <div class="d-flex align-items-center gap-3">
                 @if(auth()->check())
                 <div class="user-pill">
-                    <div class="user-avatar">
-                        {{ strtoupper(substr(auth()->user()->name, 0, 1)) }}
-                    </div>
+                    <img src="{{ auth()->user()->avatar_url }}" alt="{{ auth()->user()->name }}" class="user-avatar-img">
                     <div class="d-none d-md-block text-start me-1">
                         <div class="fw-bold small text-dark lh-1">{{ auth()->user()->name }}</div>
                         <div class="text-muted" style="font-size: 0.72rem;">
                             @if(auth()->user()->role === 'admin')
-                                <span class="badge bg-danger-subtle text-danger border border-danger-subtle">Quản trị viên</span>
+                                <span class="badge bg-danger-subtle text-danger border border-danger-subtle">🛡️ Quản trị viên</span>
                             @else
-                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Giảng viên</span>
+                                <span class="badge bg-primary-subtle text-primary border border-primary-subtle">👨‍🏫 Giảng viên</span>
                             @endif
                         </div>
                     </div>
@@ -463,7 +457,7 @@
             <!-- Flash Messages -->
             @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show d-flex align-items-center gap-2 border-0 shadow-sm" role="alert">
-                <i class="fa-solid fa-circle-check fs-5 text-success"></i>
+                <span class="fs-4">🎉</span>
                 <div>{{ session('success') }}</div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -471,7 +465,7 @@
 
             @if(session('error'))
             <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center gap-2 border-0 shadow-sm" role="alert">
-                <i class="fa-solid fa-triangle-exclamation fs-5 text-danger"></i>
+                <span class="fs-4">⚠️</span>
                 <div>{{ session('error') }}</div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -479,7 +473,7 @@
 
             @if(session('info'))
             <div class="alert alert-info alert-dismissible fade show d-flex align-items-center gap-2 border-0 shadow-sm" role="alert">
-                <i class="fa-solid fa-circle-info fs-5 text-info"></i>
+                <span class="fs-4">ℹ️</span>
                 <div>{{ session('info') }}</div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
@@ -487,7 +481,7 @@
 
             @if($errors->any())
             <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm" role="alert">
-                <div class="fw-bold mb-1"><i class="fa-solid fa-circle-xmark me-1"></i> Đã xảy ra lỗi vui lòng kiểm tra lại:</div>
+                <div class="fw-bold mb-1">❌ Đã xảy ra lỗi vui lòng kiểm tra lại:</div>
                 <ul class="mb-0 ps-3">
                     @foreach($errors->all() as $error)
                         <li>{{ $error }}</li>
@@ -502,9 +496,14 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <div class="container-fluid">
-                <strong>HUIT Schedule Hub</strong> &copy; 2026 - Trường Đại học Công Thương TP.HCM (HUIT).
-                Hệ thống Quản lý và Phân lịch Giảng dạy Đa Cơ sở Thông minh.
+            <div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between gap-2">
+                <div class="d-flex align-items-center gap-2">
+                    <img src="{{ asset('images/huit-crest.svg') }}" width="24" height="24" alt="HUIT Crest">
+                    <span><strong>HUIT Schedule Hub</strong> &copy; 2026 - Trường Đại học Công Thương TP.HCM</span>
+                </div>
+                <div class="text-muted small">
+                    Phân lịch giảng dạy thông minh & tối ưu di chuyển đa cơ sở 🚀
+                </div>
             </div>
         </footer>
     </div>

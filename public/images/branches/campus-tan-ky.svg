@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
+    <defs>
+        <linearGradient id="skyTanKy" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#fef3c7" />
+            <stop offset="100%" stop-color="#f8fafc" />
+        </linearGradient>
+        <linearGradient id="bldgTanKy" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#0284c7" />
+            <stop offset="100%" stop-color="#0369a1" />
+        </linearGradient>
+    </defs>
+    <!-- Background Sky -->
+    <rect width="400" height="240" fill="url(#skyTanKy)" />
+    
+    <!-- Building Labs -->
+    <rect x="70" y="70" width="260" height="130" fill="url(#bldgTanKy)" rx="5" />
+    <rect x="50" y="110" width="80" height="90" fill="#075985" rx="3" />
+    <rect x="270" y="110" width="80" height="90" fill="#075985" rx="3" />
+
+    <!-- Laboratory Glass Wall / Windows -->
+    <g fill="#e0f2fe" opacity="0.9">
+        <rect x="90" y="85" width="220" height="20" rx="2" />
+        <rect x="140" y="120" width="40" height="30" rx="3" />
+        <rect x="190" y="120" width="40" height="30" rx="3" />
+        <rect x="240" y="120" width="40" height="30" rx="3" />
+
+        <rect x="65" y="130" width="20" height="25" rx="2" />
+        <rect x="95" y="130" width="20" height="25" rx="2" />
+        <rect x="285" y="130" width="20" height="25" rx="2" />
+        <rect x="315" y="130" width="20" height="25" rx="2" />
+    </g>
+
+    <!-- Lab Flask / Science Icon Badge on Roof -->
+    <circle cx="200" cy="50" r="18" fill="#f06a19" />
+    <path d="M 196 42 L 204 42 L 204 46 L 208 55 A 4 4 0 0 1 204 59 L 196 59 A 4 4 0 0 1 192 55 L 196 46 Z" fill="#ffffff" />
+    <circle cx="200" cy="53" r="2" fill="#f06a19" />
+
+    <!-- Entrance -->
+    <rect x="180" y="165" width="40" height="35" fill="#f8fafc" rx="3" />
+    <rect x="188" y="172" width="24" height="28" fill="#0369a1" />
+
+    <!-- Ground & Garden -->
+    <rect x="0" y="200" width="400" height="40" fill="#15803d" />
+    <rect x="150" y="200" width="100" height="40" fill="#cbd5e1" />
+
+    <!-- Signboard -->
+    <rect x="110" y="87" width="180" height="16" fill="#f06a19" rx="3" />
+    <text x="200" y="99" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="800" font-size="9" fill="#ffffff" text-anchor="middle">HUIT - CƠ SỞ 2 (THỰC NGHIỆM & CHẾ BIẾN)</text>
+
+    <!-- Location Badge Overlay -->
+    <rect x="15" y="15" width="165" height="26" rx="13" fill="#ffffff" opacity="0.95" />
+    <circle cx="28" cy="28" r="6" fill="#f59e0b" />
+    <text x="40" y="32" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="700" font-size="10" fill="#1e293b">93 Tân Kỳ Tân Quý, Tân Phú</text>
+</svg>

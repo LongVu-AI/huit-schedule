@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="100%" height="100%">
+    <defs>
+        <linearGradient id="skyTanPhu" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#dbeafe" />
+            <stop offset="100%" stop-color="#eff6ff" />
+        </linearGradient>
+        <linearGradient id="bldgMain" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#0b3c85" />
+            <stop offset="100%" stop-color="#1e40af" />
+        </linearGradient>
+        <linearGradient id="bldgAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#f06a19" />
+            <stop offset="100%" stop-color="#ea580c" />
+        </linearGradient>
+    </defs>
+    <!-- Background Sky -->
+    <rect width="400" height="240" fill="url(#skyTanPhu)" />
+    <!-- Sun -->
+    <circle cx="340" cy="50" r="28" fill="#fef08a" opacity="0.8" />
+    <circle cx="340" cy="50" r="36" fill="#fef08a" opacity="0.3" />
+    
+    <!-- Trees Background -->
+    <ellipse cx="60" cy="190" rx="35" ry="30" fill="#86efac" />
+    <ellipse cx="100" cy="185" rx="30" ry="28" fill="#4ade80" />
+    <ellipse cx="320" cy="190" rx="35" ry="32" fill="#4ade80" />
+    <ellipse cx="355" cy="185" rx="30" ry="28" fill="#86efac" />
+
+    <!-- Main University Tower (Cơ sở chính 140 Lê Trọng Tấn) -->
+    <!-- Central Tower -->
+    <rect x="140" y="45" width="120" height="155" fill="url(#bldgMain)" rx="4" />
+    <!-- Central Accent Stripe -->
+    <rect x="190" y="45" width="20" height="155" fill="url(#bldgAccent)" />
+    
+    <!-- Left Wing -->
+    <rect x="65" y="85" width="80" height="115" fill="#1e3a8a" rx="3" />
+    <!-- Right Wing -->
+    <rect x="255" y="85" width="80" height="115" fill="#1e3a8a" rx="3" />
+
+    <!-- Windows Tower Grid -->
+    <g fill="#bfdbfe" opacity="0.85">
+        <rect x="150" y="60" width="16" height="14" rx="2" />
+        <rect x="170" y="60" width="16" height="14" rx="2" />
+        <rect x="214" y="60" width="16" height="14" rx="2" />
+        <rect x="234" y="60" width="16" height="14" rx="2" />
+
+        <rect x="150" y="85" width="16" height="14" rx="2" />
+        <rect x="170" y="85" width="16" height="14" rx="2" />
+        <rect x="214" y="85" width="16" height="14" rx="2" />
+        <rect x="234" y="85" width="16" height="14" rx="2" />
+
+        <rect x="150" y="110" width="16" height="14" rx="2" />
+        <rect x="170" y="110" width="16" height="14" rx="2" />
+        <rect x="214" y="110" width="16" height="14" rx="2" />
+        <rect x="234" y="110" width="16" height="14" rx="2" />
+
+        <rect x="150" y="135" width="16" height="14" rx="2" />
+        <rect x="170" y="135" width="16" height="14" rx="2" />
+        <rect x="214" y="135" width="16" height="14" rx="2" />
+        <rect x="234" y="135" width="16" height="14" rx="2" />
+
+        <!-- Left wing windows -->
+        <rect x="75" y="100" width="14" height="12" rx="2" />
+        <rect x="95" y="100" width="14" height="12" rx="2" />
+        <rect x="115" y="100" width="14" height="12" rx="2" />
+        <rect x="75" y="125" width="14" height="12" rx="2" />
+        <rect x="95" y="125" width="14" height="12" rx="2" />
+        <rect x="115" y="125" width="14" height="12" rx="2" />
+        <rect x="75" y="150" width="14" height="12" rx="2" />
+        <rect x="95" y="150" width="14" height="12" rx="2" />
+        <rect x="115" y="150" width="14" height="12" rx="2" />
+
+        <!-- Right wing windows -->
+        <rect x="270" y="100" width="14" height="12" rx="2" />
+        <rect x="290" y="100" width="14" height="12" rx="2" />
+        <rect x="310" y="100" width="14" height="12" rx="2" />
+        <rect x="270" y="125" width="14" height="12" rx="2" />
+        <rect x="290" y="125" width="14" height="12" rx="2" />
+        <rect x="310" y="125" width="14" height="12" rx="2" />
+        <rect x="270" y="150" width="14" height="12" rx="2" />
+        <rect x="290" y="150" width="14" height="12" rx="2" />
+        <rect x="310" y="150" width="14" height="12" rx="2" />
+    </g>
+
+    <!-- Main Entrance Gate -->
+    <rect x="175" y="165" width="50" height="35" fill="#f8fafc" rx="4" />
+    <rect x="185" y="175" width="30" height="25" fill="#0b3c85" rx="2" />
+
+    <!-- Flag / Crest Signboard -->
+    <rect x="160" y="32" width="80" height="14" fill="#ffffff" rx="3" />
+    <text x="200" y="42" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="8.5" fill="#0b3c85" text-anchor="middle">HUIT - CƠ SỞ CHÍNH</text>
+
+    <!-- Ground / Campus Lawn -->
+    <rect x="0" y="200" width="400" height="40" fill="#22c55e" />
+    <rect x="120" y="200" width="160" height="40" fill="#94a3b8" />
+    <line x1="200" y1="205" x2="200" y2="235" stroke="#ffffff" stroke-width="2" stroke-dasharray="4,4" />
+
+    <!-- Location Badge Overlay -->
+    <rect x="15" y="15" width="150" height="26" rx="13" fill="#ffffff" opacity="0.95" />
+    <circle cx="28" cy="28" r="6" fill="#ef4444" />
+    <text x="40" y="32" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="700" font-size="10" fill="#1e293b">140 Lê Trọng Tấn, Tân Phú</text>
+</svg>

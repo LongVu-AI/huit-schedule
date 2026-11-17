@@ -63,4 +63,12 @@ class User extends Authenticatable
     {
         return $this->role === 'teacher';
     }
+
+    public function getAvatarUrlAttribute(): string
+    {
+        if ($this->isAdmin()) {
+            return asset('images/avatars/admin.svg');
+        }
+        return $this->teacher?->avatar_url ?? asset('images/avatars/teacher-1.svg');
+    }
 }

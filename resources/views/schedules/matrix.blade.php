@@ -107,21 +107,22 @@
                                 @foreach($dayCell['schedules'] as $s)
                                     <div class="p-2 mb-2 rounded border border-primary border-opacity-25 bg-primary-subtle bg-opacity-25 shadow-xs" style="font-size: 0.8rem;">
                                         <div class="fw-bold text-primary text-truncate" title="{{ $s->subject_name }}">
-                                            {{ $s->subject_name }}
+                                            {{ $s->subject_emoji }} {{ $s->subject_name }}
                                         </div>
-                                        <div class="text-dark small fw-semibold">
-                                            <i class="fa-solid fa-chalkboard-user me-1 text-secondary"></i>{{ $s->teacher->full_name ?? 'GV' }}
+                                        <div class="text-dark small fw-semibold d-flex align-items-center gap-1 mt-1">
+                                            <img src="{{ $s->teacher->avatar_url }}" width="18" height="18" class="rounded-circle border" style="object-fit:cover;">
+                                            <span class="text-truncate">{{ $s->teacher->full_name ?? 'GV' }}</span>
                                         </div>
                                         <div class="text-danger small fw-bold">
-                                            <i class="fa-solid fa-door-open me-1"></i>Phòng: {{ $s->room }}
+                                            🚪 Phòng: {{ $s->room }}
                                         </div>
                                         <div class="text-muted" style="font-size: 0.7rem;">
-                                            <i class="fa-solid fa-location-dot me-1 text-danger"></i>{{ $s->branch->branch_name ?? '' }}
+                                            {{ $s->branch->emoji }} {{ $s->branch->branch_name ?? '' }}
                                         </div>
                                         @if(auth()->user()->role === 'admin')
                                         <div class="text-end mt-1 pt-1 border-top border-primary border-opacity-10">
                                             <a href="{{ route('schedules.edit', $s) }}" class="text-decoration-none text-primary small me-2" title="Chỉnh sửa">
-                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                ✏️ Sửa
                                             </a>
                                         </div>
                                         @endif
@@ -131,15 +132,15 @@
                                 <!-- Free slot with 1-click booking -->
                                 <div class="h-100 d-flex flex-column align-items-center justify-content-center p-2 rounded border border-dashed border-success border-opacity-50 text-center" style="min-height: 85px;">
                                     <span class="badge bg-success-subtle text-success mb-1" style="font-size: 0.7rem;">
-                                        <i class="fa-regular fa-circle-check me-1"></i>Tiết Trống
+                                        ✨ Tiết Trống
                                     </span>
                                     @if(auth()->user()->role === 'admin')
                                     <a href="{{ route('schedules.create', ['day_of_week' => $dayNum, 'shift_or_periods' => $shiftLabel, 'branch_id' => $branchId, 'teacher_id' => $teacherId]) }}" 
                                         class="btn btn-outline-success btn-sm py-1 px-2 fw-semibold" style="font-size: 0.72rem;">
-                                        <i class="fa-solid fa-plus me-1"></i>Phân lịch
+                                        ➕ Phân lịch
                                     </a>
                                     @else
-                                    <span class="text-muted" style="font-size: 0.7rem;">Chưa có lịch</span>
+                                    <span class="text-muted" style="font-size: 0.7rem;">☕ Chưa có lịch</span>
                                     @endif
                                 </div>
                             @endif

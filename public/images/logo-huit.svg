@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 100" width="100%" height="100%">
+    <defs>
+        <linearGradient id="huitBlueGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0b3c85" />
+            <stop offset="100%" stop-color="#072554" />
+        </linearGradient>
+        <linearGradient id="huitOrangeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f06a19" />
+            <stop offset="100%" stop-color="#d8570d" />
+        </linearGradient>
+        <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.15" />
+        </filter>
+    </defs>
+
+    <!-- Crest / Emblem Icon -->
+    <g transform="translate(10, 10)" filter="url(#shadow)">
+        <!-- Outer Cog / Gear ring -->
+        <circle cx="40" cy="40" r="38" fill="url(#huitBlueGrad)" />
+        <circle cx="40" cy="40" r="34" fill="none" stroke="#f06a19" stroke-width="2.5" />
+        
+        <!-- Cog teeth accent -->
+        <g stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.9">
+            <line x1="40" y1="5" x2="40" y2="11" />
+            <line x1="40" y1="69" x2="40" y2="75" />
+            <line x1="5" y1="40" x2="11" y2="40" />
+            <line x1="69" y1="40" x2="75" y2="40" />
+            <line x1="15" y1="15" x2="20" y2="20" />
+            <line x1="60" y1="60" x2="65" y2="65" />
+            <line x1="15" y1="65" x2="20" y2="60" />
+            <line x1="60" y1="20" x2="65" y2="15" />
+        </g>
+
+        <!-- Inner circle with flame / book -->
+        <circle cx="40" cy="40" r="26" fill="url(#huitOrangeGrad)" />
+        
+        <!-- Stylized Open Book & Flame / Star -->
+        <path d="M 28 48 Q 40 43 52 48 L 52 35 Q 40 31 28 35 Z" fill="#ffffff" />
+        <path d="M 40 33 L 40 46" stroke="#0b3c85" stroke-width="1.8" />
+        
+        <!-- Graduation Cap / Torch -->
+        <polygon points="40,20 49,25 40,30 31,25" fill="#ffffff" />
+        <polygon points="36,28 36,33 40,35 44,33 44,28" fill="#ffffff" opacity="0.9" />
+        
+        <!-- Small badge ribbon -->
+        <rect x="25" y="55" width="30" height="11" rx="3" fill="#ffffff" />
+        <text x="40" y="63.5" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="8.5" fill="#0b3c85" text-anchor="middle" letter-spacing="1">HUIT</text>
+    </g>
+
+    <!-- Typography Section -->
+    <g transform="translate(105, 20)">
+        <!-- Ministry Subtitle -->
+        <text x="0" y="14" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="700" font-size="10" fill="#f06a19" letter-spacing="0.8">BỘ CÔNG THƯƠNG</text>
+        
+        <!-- Main University Name -->
+        <text x="0" y="34" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="800" font-size="16.5" fill="#0b3c85" letter-spacing="0.2">TRƯỜNG ĐẠI HỌC CÔNG THƯƠNG TP.HCM</text>
+        
+        <!-- English Name -->
+        <text x="0" y="49" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="600" font-size="9.5" fill="#64748b" letter-spacing="0.3">HO CHI MINH CITY UNIVERSITY OF INDUSTRY AND TRADE</text>
+
+        <!-- Schedule Hub Tag -->
+        <rect x="0" y="56" width="115" height="18" rx="4" fill="#0b3c85" />
+        <text x="57.5" y="68.5" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="800" font-size="9" fill="#ffffff" text-anchor="middle" letter-spacing="0.5">SCHEDULE HUB</text>
+        <circle cx="123" cy="65" r="3.5" fill="#10b981" />
+        <text x="132" y="68" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-weight="600" font-size="9" fill="#10b981">Đa Cơ Sở Thông Minh</text>
+    </g>
+</svg>

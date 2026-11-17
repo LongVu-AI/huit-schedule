@@ -268,35 +268,38 @@
                 html += `
                     <div class="p-3 rounded-3 ${cardBorder} position-relative">
                         <div class="d-flex align-items-start justify-content-between gap-2 mb-2">
-                            <div>
-                                <span class="badge ${item.badge_class} mb-1" style="font-size: 0.72rem;">
-                                    ${item.recommendation_tag}
-                                </span>
-                                <h6 class="fw-bold mb-0 text-dark" style="font-size: 0.95rem;">${t.full_name}</h6>
+                            <div class="d-flex align-items-center gap-2">
+                                <img src="${t.avatar_url}" width="38" height="38" class="rounded-circle border" style="object-fit:cover;" alt="${t.full_name}">
+                                <div>
+                                    <span class="badge ${item.badge_class} mb-1" style="font-size: 0.72rem;">
+                                        ${item.recommendation_tag}
+                                    </span>
+                                    <h6 class="fw-bold mb-0 text-dark" style="font-size: 0.95rem;">${t.full_name}</h6>
+                                </div>
                             </div>
                             ${!isBusy ? `
                                 <button type="button" class="btn btn-sm btn-outline-primary fw-semibold px-2 py-1 select-teacher-btn" 
                                     data-id="${t.id}" style="font-size: 0.78rem;">
-                                    <i class="fa-solid fa-check me-1"></i>Chọn GV
+                                    ✅ Chọn GV
                                 </button>
                             ` : `
-                                <span class="badge bg-danger small">Trùng lịch</span>
+                                <span class="badge bg-danger small">❌ Trùng lịch</span>
                             `}
                         </div>
 
                         <div class="text-muted small mb-2" style="font-size: 0.78rem;">
-                            <i class="fa-solid fa-graduation-cap text-warning me-1"></i>${t.expertise}
+                            ${t.field_emoji || '🎓'} ${t.expertise}
                         </div>
 
                         ${item.conflict_info.travel_warning ? `
                             <div class="alert alert-warning py-1 px-2 mb-0 small" style="font-size: 0.73rem;">
-                                <i class="fa-solid fa-triangle-exclamation me-1"></i>${item.conflict_info.travel_warning}
+                                🚗 ${item.conflict_info.travel_warning}
                             </div>
                         ` : ''}
 
                         ${item.conflict_info.optimization_note ? `
                             <div class="text-success small fw-semibold" style="font-size: 0.73rem;">
-                                <i class="fa-solid fa-shield-check me-1"></i>${item.conflict_info.optimization_note}
+                                ✨ ${item.conflict_info.optimization_note}
                             </div>
                         ` : ''}
                     </div>

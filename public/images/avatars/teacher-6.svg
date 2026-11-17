@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="100%" height="100%">
+    <defs>
+        <linearGradient id="t6Bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f97316" />
+            <stop offset="100%" stop-color="#c2410c" />
+        </linearGradient>
+    </defs>
+    <circle cx="60" cy="60" r="58" fill="url(#t6Bg)" />
+    <!-- Modern tech jacket -->
+    <path d="M 25 110 C 25 86, 42 78, 60 78 C 78 78, 95 86, 95 110 Z" fill="#ffffff" />
+    <path d="M 32 110 L 50 82 L 60 96 L 70 82 L 88 110 Z" fill="#ea580c" />
+    <!-- Head -->
+    <circle cx="60" cy="48" r="22" fill="#ffedd5" />
+    <!-- Trendy cut -->
+    <path d="M 38 44 C 36 26, 48 18, 60 18 C 72 18, 84 26, 82 44 C 76 34, 68 32, 60 32 C 52 32, 44 34, 38 44 Z" fill="#172554" />
+    <!-- Glasses -->
+    <rect x="44" y="44" width="13" height="10" rx="3" fill="none" stroke="#1e293b" stroke-width="1.8" />
+    <rect x="63" y="44" width="13" height="10" rx="3" fill="none" stroke="#1e293b" stroke-width="1.8" />
+    <line x1="57" y1="49" x2="63" y2="49" stroke="#1e293b" stroke-width="1.8" />
+    <!-- Eyes -->
+    <circle cx="50.5" cy="49" r="1.8" fill="#0f172a" />
+    <circle cx="69.5" cy="49" r="1.8" fill="#0f172a" />
+    <!-- Smile -->
+    <path d="M 54 61 Q 60 66 66 61" fill="none" stroke="#9a3412" stroke-width="2" stroke-linecap="round" />
+    <!-- Smartphone / Mobile Dev Badge -->
+    <circle cx="95" cy="95" r="18" fill="#ffffff" />
+    <circle cx="95" cy="95" r="15" fill="#f97316" />
+    <rect x="90" y="87" width="10" height="16" rx="2" fill="#ffffff" />
+    <circle cx="95" cy="100.5" r="1" fill="#ea580c" />
+</svg>
